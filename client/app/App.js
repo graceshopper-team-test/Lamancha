@@ -1,13 +1,16 @@
-import React from 'react';
+import React from "react";
 
-import Navbar from '../features/navbar/Navbar';
-import AppRoutes from './AppRoutes';
+import Navbar from './components/Navbar'
+import Routes from './Routes'
+import ProductsList from './components/productsList'
 
 const App = () => {
   return (
     <div>
       <Navbar />
-      <AppRoutes />
+      HELLO!
+      <Routes />
+      <ProductsList />
     </div>
   );
 };
