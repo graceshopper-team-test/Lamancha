@@ -48,6 +48,16 @@ const productsData = [
   },
 ];
 
+const ordersData = [
+  { 
+    userId: 1,
+    product: [1,2,3],
+    quantity: [2,1,4],
+    price: ,
+    completed: true
+  }
+]
+
 async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
   console.log("db synced!");
