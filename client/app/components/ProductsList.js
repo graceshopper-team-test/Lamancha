@@ -3,6 +3,7 @@ import { useSelector} from "react-redux";
 
 const ProductsList = () => {
   const products = useSelector((state) => state.products.allProducts);
+  // console.log(products);
   return (
     <div>
       <h2>Products List</h2>
