@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
-import AuthForm from '../features/auth/AuthForm';
-import Home from '../features/home/Home';
-import { me } from './store';
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Route, Routes } from "react-router-dom";
+import AuthForm from "../auth/AuthForm";
+import Home from "./Home";
+import { me } from "./store";
 
 /**
  * COMPONENT
  */
 
-const AppRoutes = () => {
+const Routes = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const dispatch = useDispatch();
 
@@ -44,4 +44,4 @@ const AppRoutes = () => {
   );
 };
 
-export default AppRoutes;
+export default Routes;
