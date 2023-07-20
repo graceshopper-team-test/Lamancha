@@ -1,8 +1,8 @@
 import React from "react";
 
-import Navbar from './components/Navbar'
-import Routes from './Routes'
-import ProductsList from './components/productsList'
+import Navbar from "./Navbar";
+import Routes from "./Routes";
+import ProductsList from "./components/productsList";
 
 const App = () => {
   return (
