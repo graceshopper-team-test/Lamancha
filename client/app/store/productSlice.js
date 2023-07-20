@@ -14,6 +14,7 @@ export const fetchAllProducts = createAsyncThunk(
     }
   }
 );
+
 // fetch single product
 export const fetchSingleProduct = createAsyncThunk(
   "singleProduct/fetchSingleProduct",
@@ -67,7 +68,6 @@ export const updateSingleProduct = createAsyncThunk(
     }
   }
 );
-
 
 export const productSlice = createSlice({
   name: "products",
