@@ -3,13 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import AuthForm from "../auth/AuthForm";
 import Home from "./Home";
-import { me } from "./store";
+import { me } from "../store/store";
 
 /**
  * COMPONENT
  */
 
-const Routes = () => {
+const AppRoutes = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const dispatch = useDispatch();
 
@@ -44,4 +44,4 @@ const Routes = () => {
   );
 };
 
-export default Routes;
+export default AppRoutes;
