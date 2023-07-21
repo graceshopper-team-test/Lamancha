@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// fetch all tasks
+// fetch all products
 export const fetchAllProducts = createAsyncThunk(
   "allProducts/fetchAllProducts",
   async () => {
@@ -80,6 +80,7 @@ export const productSlice = createSlice({
       .addCase(fetchAllProducts.fulfilled, (state, { payload }) => {
         // use the payload backend send back to set allproducts to the state
         state.allProducts = payload;
+        // console.log(state.allProducts);
       })
       .addCase(fetchSingleProduct.fulfilled, (state, { payload }) => {
         // use payload to set singleProduct to the state

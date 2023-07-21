@@ -1,17 +1,18 @@
-import React, {useEffect} from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React,{useEffect} from "react";
+import { useSelector,useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import { fetchSingleProduct } from "../store/productSlice";
-import { useParams } from "react-router";
-
 
 const Product = () => {
   const product = useSelector((state) => state.products.singleProduct);
-  const dispatch = useDispatch();
-  const {productID} = useParams()
-console.log(product);
-  useEffect(() => {
-    dispatch(fetchSingleProduct(productID))
-  }, [dispatch])
+// console.log(product);
+const {id}=useParams();
+const dispatch = useDispatch();
+
+useEffect(() => {
+  // Dispatch the async thunk when the component mounts
+  dispatch(fetchSingleProduct(id));
+}, [id]);
 
   return (
     <div>
