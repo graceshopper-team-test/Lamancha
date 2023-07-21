@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User, Products },
+  models: { User, Products, Orders, OrderProducts },
 } = require("../server/db");
 
 /**
@@ -48,16 +48,6 @@ const productsData = [
   },
 ];
 
-const ordersData = [
-  { 
-    userId: 1,
-    product: [1,2,3],
-    quantity: [2,1,4],
-    price: ,
-    completed: true
-  }
-]
-
 async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
   console.log("db synced!");
@@ -68,12 +58,40 @@ async function seed() {
     User.create({ username: "murphy", password: "123" }),
   ]);
 
+  const makeOrders = await Promise.all([
+    Orders.create({
+      id: 1,
+      userId: 2,
+      completed: false,
+    }),
+    Orders.create({
+      id: 2,
+      userId: 1,
+      completed: false,
+    }),
+  ]);
+
+  const orderProducts = await Promise.all([
+    OrderProducts.create({
+      orderId: 1,
+      productId: 3,
+      quantity: 2,
+    }),
+    OrderProducts.create({
+      orderId: 1,
+      productId: 1,
+      quantity: 2,
+    }),
+  ]);
+
   const products = await Promise.all(
     productsData.map((product) => Products.create(product))
   );
 
   console.log(`seeded ${users.length} users`);
   console.log(`seeded ${products.length} products`);
+  console.log(`seeded ${makeOrders.length} makeOrders`);
+  console.log(`seeded ${orderProducts.length} orderProducts`);
   console.log(`seeded successfully`);
   return {
     users: {
@@ -81,6 +99,8 @@ async function seed() {
       murphy: users[1],
     },
     products,
+    makeOrders,
+    orderProducts,
   };
 }
 
