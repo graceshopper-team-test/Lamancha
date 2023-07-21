@@ -4,10 +4,7 @@ import authReducer from "../auth/authSlice";
 import productSlice from "./productSlice";
 
 const store = configureStore({
-  reducer: {
-    auth: authReducer,
-    products: productSlice
-},
+  reducer: { auth: authReducer, products: productSlice },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 
