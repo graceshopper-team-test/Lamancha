@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import AuthForm from "../auth/AuthForm";
 import Home from "./Home";
 import { me } from "../store/store";
+import Product from "./Product"
 
 /**
  * COMPONENT
