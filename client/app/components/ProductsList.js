@@ -5,13 +5,17 @@ import { Link } from "react-router-dom";
 
 const ProductsList = () => {
   const products = useSelector((state) => state.products.allProducts);
-  // console.log(products);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // Dispatch the async thunk when the component mounts
-    dispatch(fetchAllProducts());
-  }, []);
+    dispatch(fetchAllProducts())
+  }, [dispatch])
+  // console.log(products);
+
+  // useEffect(() => {
+  //   // Dispatch the async thunk when the component mounts
+  //   dispatch(fetchAllProducts());
+  // }, []);
   // const cartItemAmount=cartItems[id]
   return (
     <div>

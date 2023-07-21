@@ -53,6 +53,10 @@ const ordersData = [
     userId: 1,
     product: [1,2,3],
     quantity: [2,1,4],
+<<<<<<< HEAD
+    price: "test",
+=======
+>>>>>>> main
     completed: true
   }
 ]

@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import { fetchSingleProduct } from "../store/productSlice";
 
 const Product = () => {
-  
   const product = useSelector((state) => state.products.singleProduct);
 // console.log(product);
 const {id}=useParams();
