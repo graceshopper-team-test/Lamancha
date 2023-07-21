@@ -16,6 +16,7 @@ const Navbar = () => {
     <div>
       <h1>FS-App-Template</h1>
       <nav>
+        <Link to="/cart">Cart</Link>
         {isLoggedIn ? (
           <div>
             {/* The navbar will show these links after you log in */}
@@ -23,12 +24,14 @@ const Navbar = () => {
             <button type="button" onClick={logoutAndRedirectHome}>
               Logout
             </button>
+            <Link to="/products">Shop</Link>
           </div>
         ) : (
           <div>
             {/* The navbar will show these links before you log in */}
             <Link to="/login">Login</Link>
             <Link to="/signup">Sign Up</Link>
+            <Link to="/products">Shop</Link>
           </div>
         )}
       </nav>
