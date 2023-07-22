@@ -10,7 +10,7 @@ router.get("/", async (req, res, next) => {
       // explicitly select only the id and username fields - even though
       // orders' passwords are encrypted, it won't help if we just
       // send everything to anyone who asks!
-      attributes: ["id", "product", "quantity", "price", "completed"],
+      attributes: ["id", "userId", "completed"],
     });
     res.json(orders);
   } catch (err) {

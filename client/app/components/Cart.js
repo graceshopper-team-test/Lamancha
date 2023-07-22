@@ -1,36 +1,54 @@
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { updateCartItem ,fetchAllOrderProducts} from "../store/cartSlice";
 
 const Cart = () => {
-  const cartItems = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
-
-  // Load cart items from localStorage on component mount
+  const orderProducts = useSelector((state)=>state.orderProducts.allOrderProducts);
+    console.log(orderProducts);
   useEffect(() => {
-    const storedCartItems = getCartItems();
-    if (storedCartItems.length > 0) {
-      dispatch(addToCart(storedCartItems));
-    }
-  }, [dispatch]);
+    dispatch(fetchAllOrderProducts()); //want to get order where userId is current users's id
+  }, []);
 
+  const handleIncrement = async () => {
+    dispatch(
+        updateCartItem({
+        id: product.id,
+        updateProduct: { quantity: product.quantity + 1 },
+      })
+    );
+  };
 
+  const handleDecrement = async () => {
+    dispatch(
+        updateCartItem({
+        id: product.id,
+        updateProduct: { quantity: product.quantity - 1 },
+      })
+    );
+  };
   return (
-    <div>
-      <h2>Cart</h2>
-      {cartItems.length === 0 ? (
-        <p>Your cart is empty.</p>
-      ) : (
-        <ul>
-          {cartItems.map((item) => (
-            <li key={item.id}>
-              <h3>{item.name}</h3>
-              <p>Price: ${item.price}</p>
-              <p>Quantity: {item.quantity}</p>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+    <section id="all-Products">
+      <h1>Cart Component</h1>
+      <div id="userCart">
+        {orderProducts.map((product) => (
+          <div className="cartItem" key={product.id}>
+            <h3>{`${product.name}`}</h3>
+            <img src={`${product.imageUrl}`} />
+            <p>{`${product.details}`}</p>
+            <h4>Unit Price: {`${product.price}`}</h4>
+            <h4>Total Price: {`${product.price * product.quantity}`}</h4>
+            <p>
+              &nbsp; Quantity: {product.quantity}&nbsp;
+              <button onClick={handleIncrement}>+</button>&nbsp;
+              <button onClick={handleDecrement}>-</button>&nbsp;
+            </p>
+            <button>Place Order</button>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 };
 

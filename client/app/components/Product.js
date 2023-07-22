@@ -1,19 +1,22 @@
-import React,{useEffect} from "react";
-import { useSelector,useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchSingleProduct } from "../store/productSlice";
+import { addToCart } from "../store/cartSlice";
 
 const Product = () => {
-  
   const product = useSelector((state) => state.products.singleProduct);
-// console.log(product);
-const {id}=useParams();
-const dispatch = useDispatch();
+  // console.log(product);
+  const { id } = useParams();
+  const dispatch = useDispatch();
 
-useEffect(() => {
-  // Dispatch the async thunk when the component mounts
-  dispatch(fetchSingleProduct(id));
-}, [id]);
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+  };
+  useEffect(() => {
+    // Dispatch the async thunk when the component mounts
+    dispatch(fetchSingleProduct(id));
+  }, [id]);
 
   return (
     <div>
@@ -24,6 +27,7 @@ useEffect(() => {
           <p>{product.imageUrl}</p>
           <p>Description: {product.details}</p>
           <p>Stock: {product.stock}</p>
+          <button onClick={() => handleAddToCart(product)}>Add To Cart</button>
         </div>
       ) : (
         <p>Loading product data...</p>
