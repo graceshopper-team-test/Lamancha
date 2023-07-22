@@ -18,6 +18,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+//get a single user
 router.get("/:id", async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id, {
@@ -29,6 +30,7 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+//
 router.post("/", async (req, res, next) => {
   try {
     const user = await User.create(req.body);

@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User, Products },
+  models: { User, Products, Orders, OrderProducts },
 } = require("../server/db");
 
 /**
@@ -12,6 +12,7 @@ const {
 
 const productsData = [
   {
+    id: 1,
     name: "Smartphone",
     price: 599.99,
     imageUrl: "https://example.com/smartphone.jpg",
@@ -19,6 +20,7 @@ const productsData = [
     stock: 50,
   },
   {
+    id: 2,
     name: "Laptop",
     price: 999.99,
     imageUrl: "https://example.com/laptop.jpg",
@@ -26,6 +28,7 @@ const productsData = [
     stock: 30,
   },
   {
+    id: 3,
     name: "Headphones",
     price: 129.99,
     imageUrl: "https://example.com/headphones.jpg",
@@ -33,6 +36,7 @@ const productsData = [
     stock: 100,
   },
   {
+    id: 4,
     name: "Smartwatch",
     price: 199.99,
     imageUrl: "https://example.com/smartwatch.jpg",
@@ -40,6 +44,7 @@ const productsData = [
     stock: 20,
   },
   {
+    id: 5,
     name: "Tablet",
     price: 349.99,
     imageUrl: "https://example.com/tablet.jpg",
@@ -47,19 +52,6 @@ const productsData = [
     stock: 40,
   },
 ];
-
-const ordersData = [
-  { 
-    userId: 1,
-    product: [1,2,3],
-    quantity: [2,1,4],
-<<<<<<< HEAD
-    price: "test",
-=======
->>>>>>> main
-    completed: true
-  }
-]
 
 async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
@@ -74,9 +66,34 @@ async function seed() {
   const products = await Promise.all(
     productsData.map((product) => Products.create(product))
   );
+  const makeOrders = await Promise.all([
+    Orders.create({
+      userId: 2,
+      completed: false,
+    }),
+    Orders.create({
+      userId: 1,
+      completed: false,
+    }),
+  ]);
+
+  const orderProducts = await Promise.all([
+    OrderProducts.create({
+      orderId: 1,
+      productId: 3,
+      quantity: 2,
+    }),
+    OrderProducts.create({
+      orderId: 1,
+      productId: 1,
+      quantity: 2,
+    }),
+  ]);
 
   console.log(`seeded ${users.length} users`);
   console.log(`seeded ${products.length} products`);
+  console.log(`seeded ${makeOrders.length} makeOrders`);
+  console.log(`seeded ${orderProducts.length} orderProducts`);
   console.log(`seeded successfully`);
   return {
     users: {
@@ -84,6 +101,8 @@ async function seed() {
       murphy: users[1],
     },
     products,
+    makeOrders,
+    orderProducts,
   };
 }
 
