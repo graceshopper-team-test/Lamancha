@@ -1,16 +1,16 @@
 const router = require("express").Router();
 const {
-  models: { User, Orders },
+  models: { User, Orders, OrderProducts },
 } = require("../db");
 module.exports = router;
 
+//serves up all orders and their associated user
 router.get("/", async (req, res, next) => {
   try {
     const orders = await Orders.findAll({
-      // explicitly select only the id and username fields - even though
-      // orders' passwords are encrypted, it won't help if we just
-      // send everything to anyone who asks!
-      attributes: ["id", "product", "quantity", "price", "completed"],
+      include: {
+        model: User,
+      },
     });
     res.json(orders);
   } catch (err) {
