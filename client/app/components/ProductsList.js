@@ -2,14 +2,15 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllProducts } from "../store/productSlice";
 import { Link } from "react-router-dom";
+import "./ProductList.css";
 
 const ProductsList = () => {
   const products = useSelector((state) => state.products.allProducts);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchAllProducts())
-  }, [dispatch])
+    dispatch(fetchAllProducts());
+  }, [dispatch]);
   // console.log(products);
 
   // useEffect(() => {
@@ -18,7 +19,7 @@ const ProductsList = () => {
   // }, []);
   // const cartItemAmount=cartItems[id]
   return (
-    <div>
+    <div className="productList">
       <h2>Products List</h2>
       {products.length === 0 ? (
         <p>Loading...</p>
@@ -30,7 +31,7 @@ const ProductsList = () => {
             return (
               <li key={product.id}>
                 <Link to={`/products/${product.id}`}>
-                <h3>{product.name}</h3>
+                  <h3>{product.name}</h3>
                 </Link>
                 <p>Price: ${product.price}</p>
                 <p>{product.imageUrl}</p>

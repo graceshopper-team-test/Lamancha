@@ -1,0 +1,21 @@
+.productList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-gap: 1rem;
+}
+
+.infoMessage {
+  font-size: larger;
+  color: rgb(61, 61, 61);
+  align-content: center;
+}
+
+.header {
+  font-size: large;
+  color: rgb(61, 61, 61);
+  align-content: left;
+  padding-left: 35px;
+}
+
+.productMap {
+}
