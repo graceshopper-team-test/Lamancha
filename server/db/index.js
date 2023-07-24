@@ -13,6 +13,7 @@ Orders.belongsTo(User);
 
 Orders.belongsToMany(Products, { through: OrderProducts });
 Products.belongsToMany(Orders, { through: OrderProducts });
+OrderProducts.belongsTo(Products, { foreignKey: "productId" });
 
 module.exports = {
   db,
