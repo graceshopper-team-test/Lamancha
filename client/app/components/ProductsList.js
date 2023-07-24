@@ -6,7 +6,6 @@ import { addToCart } from "../store/cartSlice";
 
 const ProductsList = () => {
   const products = useSelector((state) => state.products.allProducts);
-  // console.log(products);
   const dispatch = useDispatch();
 
   // function to add a product to cart
