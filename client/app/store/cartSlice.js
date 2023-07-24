@@ -20,7 +20,7 @@ export const addToCart = createAsyncThunk(
 
   async ({ id,newItem }) => {
     try {
-        
+
       const { data } = await axios.post(`/api/orderproducts/${id}`, newItem);
       console.log("data:", data);
       return data;
@@ -35,7 +35,7 @@ export const updateCartItem = createAsyncThunk(
   "singleOrderProduct/updateSingleOrderProduct",
   async ({ id,updateCartItem }) => {
     try {
-      const { data } = await axios.put(`/api/orderproducts/${id}`, updateItem);
+      const { data } = await axios.put(`/api/orderproducts/${id}`, updateCartItem);
       return data;
     } catch (err) {
       return err.message;

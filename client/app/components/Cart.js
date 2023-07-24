@@ -15,22 +15,22 @@ const Cart = () => {
 
   const handleIncrement = async (productId) => {
     const order = orderProducts.find((order) => order.product.id === productId);
-    dispatch(
-      updateCartItem({
-        id: productId,
-        updateProduct: { quantity: order.quantity + 1 },
-      })
-    );
+    if (order && order.quantity > 0) {
+      dispatch(updateCartItem({
+        id: order.product.id,
+        quantity: order.quantity + 1
+        }));
+    }
   };
 
   const handleDecrement = async (productId) => {
     const order = orderProducts.find((order) => order.product.id === productId);
-    dispatch(
-      updateCartItem({
-        id: productId,
-        updateProduct: { quantity: order.quantity - 1 },
-      })
-    );
+    if (order && order.quantity > 0) {
+      dispatch(updateCartItem({
+        id: order.product.id,
+        quantity: order.quantity - 1
+        }));
+    }
   };
 
   return (
