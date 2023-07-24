@@ -11,6 +11,7 @@ router.get("/", async (req, res, next) => {
       // orderProduct' passwords are encrypted, it won't help if we just
       // send everything to anyone who asks!
       attributes: ["orderId", "productId", "quantity"],
+      include: Products,
     });
     res.json(orderProducts);
   } catch (err) {

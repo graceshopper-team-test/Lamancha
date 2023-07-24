@@ -32,15 +32,16 @@ const Cart = () => {
     <section id="all-Products">
       <h1>Cart Component</h1>
       <div id="userCart">
-        {orderProducts.map((product) => (
-          <div className="cartItem" key={product.id}>
-            <h3>{`${product.name}`}</h3>
-            <img src={`${product.imageUrl}`} />
-            <p>{`${product.details}`}</p>
-            <h4>Unit Price: {`${product.price}`}</h4>
-            <h4>Total Price: {`${product.price * product.quantity}`}</h4>
+        {orderProducts.map((order) => (
+          <div className="cartItem" key={order.product.id}>
+            <h3>{`${order.product.name}`}</h3>
+            <img src={`${order.product.imageUrl}`} />
+            <p>{`${order.product.details}`}</p>
+            <h4>Unit Price: {`${order.product.price}`}</h4>
+            <h4>Total Price: {`${Number(order.product.price) * Number(order.quantity)}`}</h4>
+            {console.log(Number(order.quantity))}
             <p>
-              &nbsp; Quantity: {product.quantity}&nbsp;
+              &nbsp; Quantity: {order.quantity}&nbsp;
               <button onClick={handleIncrement}>+</button>&nbsp;
               <button onClick={handleDecrement}>-</button>&nbsp;
             </p>

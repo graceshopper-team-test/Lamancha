@@ -20,6 +20,7 @@ export const addToCart = createAsyncThunk(
 
   async ({ newItem }) => {
     try {
+        console.log(newItem);
       const { data } = await axios.post(`/api/orderproducts`, newItem);
       return data;
     } catch (err) {
