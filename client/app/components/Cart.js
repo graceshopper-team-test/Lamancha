@@ -1,35 +1,70 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { cartProducts } from '../store/cartSlicetSlice';
-import { getOrder } from '../store/cartSlice';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { updateCartItem, fetchAllOrderProducts } from "../store/cartSlice";
 
-const Cart = () => { 
-    const dispatch = useDispatch();
-    const userOrder = useSelector(cartProducts)
-    const { id } = useParams();
-    // console.log("itemID =>",itemId)
-    
-    useEffect(() => {
-        dispatch(getOrder(id)) //want to get order where userId is current users's id
-  },[dispatch])
-    console.log('product => ', product)
-    return (
-    <section id='all-Products'>
-        <h1>Cart Component</h1>
-        <div id='userCart'>
-            {userOrder.map((order) => (
-                <div className='cartItem' key={order.id}>
-                    <h3>{`${order.name}`}</h3>
-                    <img src={`${order.imageUrl}`} />
-                    <p>{`${order.details}`}</p>
-                    <h4>{`${order.price}`}</h4>
-                    {/* <input type='number' name='quantity' min={"0"} max={"order.stock?"} onChange={'do we need onchange to set the quantity and multiply it by price?'}/> */}
-                    <button>Place Order</button>
-                </div>
-            ))}
-        </div>
+const Cart = () => {
+  const dispatch = useDispatch();
+  const orderProducts = useSelector(
+    (state) => state.orderProducts.allOrderProducts
+  );
+
+  useEffect(() => {
+    dispatch(fetchAllOrderProducts()); //want to get order where userId is current user's id
+  }, []);
+
+  const handleIncrement = async (productId) => {
+    const order = orderProducts.find((order) => order.product.id === productId);
+    dispatch(
+      updateCartItem({
+        id: productId,
+        updateProduct: { quantity: order.quantity + 1 },
+      })
+    );
+  };
+
+  const handleDecrement = async (productId) => {
+    const order = orderProducts.find((order) => order.product.id === productId);
+    dispatch(
+      updateCartItem({
+        id: productId,
+        updateProduct: { quantity: order.quantity - 1 },
+      })
+    );
+  };
+
+  return (
+    <section id="all-Products">
+      <h1>Cart Component</h1>
+      <div id="userCart">
+        {orderProducts.map((order) => (
+          <div className="cartItem" key={order.product.id}>
+            <h3>{`${order.product.name}`}</h3>
+            <img src={`${order.product.imageUrl}`} />
+            <p>{`${order.product.details}`}</p>
+            <h4>Unit Price: {`${order.product.price}`}</h4>
+            <h4>
+              Total Price:{" "}
+              {`${Number(order.product.price) * Number(order.quantity)}`}
+            </h4>
+            {console.log(Number(order.quantity))}
+            <p>
+              &nbsp; Quantity: {order.quantity}&nbsp;
+              <button onClick={() => handleIncrement(order.product.id)}>
+                +
+              </button>
+              &nbsp;
+              <button onClick={() => handleDecrement(order.product.id)}>
+                -
+              </button>
+              &nbsp;
+            </p>
+            <button>Place Order</button>
+          </div>
+        ))}
+      </div>
     </section>
-)};
+  );
+};
 
 export default Cart;

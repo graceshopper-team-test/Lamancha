@@ -2,21 +2,32 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllProducts } from "../store/productSlice";
 import { Link } from "react-router-dom";
+<<<<<<< HEAD
 import "./ProductList.css";
+=======
+import { addToCart } from "../store/cartSlice";
+>>>>>>> aa3ffeb6786beff59079e71745fffdbd55dede74
 
 const ProductsList = () => {
   const products = useSelector((state) => state.products.allProducts);
   const dispatch = useDispatch();
 
+<<<<<<< HEAD
   useEffect(() => {
     dispatch(fetchAllProducts());
   }, [dispatch]);
   // console.log(products);
+=======
+  // function to add a product to cart
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+  };
+>>>>>>> aa3ffeb6786beff59079e71745fffdbd55dede74
 
-  // useEffect(() => {
-  //   // Dispatch the async thunk when the component mounts
-  //   dispatch(fetchAllProducts());
-  // }, []);
+  // Dispatch the async thunk when the component mounts
+  useEffect(() => {
+    dispatch(fetchAllProducts());
+  }, []);
   // const cartItemAmount=cartItems[id]
   return (
     <div className="productList">
@@ -37,7 +48,9 @@ const ProductsList = () => {
                 <p>{product.imageUrl}</p>
                 <p>Description: {product.details}</p>
                 <p>Stock: {product.stock}</p>
-                {/* <button onClick={()=>addToCart(id)}>Add To Cart {cartItemAmount >0 && <>({cartItemAmount})</>}</button> */}
+                <button onClick={() => handleAddToCart(product)}>
+                  Add To Cart
+                </button>
               </li>
             );
           })}

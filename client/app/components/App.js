@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import {  useDispatch } from "react-redux";
 import { fetchAllProducts } from "../store/productSlice";
-import { Navbar, AppRoutes, ProductsList, Product, Cart } from "./";
-import {Routes, Route} from "react-router-dom";
+import { Navbar, AppRoutes} from "./";
+
 const App = () => {
 
   const dispatch = useDispatch();
@@ -15,7 +15,6 @@ const App = () => {
     <div>
       <Navbar />
       <AppRoutes />
-      {/* <ProductsList /> */}
     </div>
   );
 };
