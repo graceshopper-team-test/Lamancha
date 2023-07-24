@@ -2,27 +2,21 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllProducts } from "../store/productSlice";
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
 import "./ProductList.css";
-=======
 import { addToCart } from "../store/cartSlice";
->>>>>>> aa3ffeb6786beff59079e71745fffdbd55dede74
 
 const ProductsList = () => {
   const products = useSelector((state) => state.products.allProducts);
   const dispatch = useDispatch();
 
-<<<<<<< HEAD
   useEffect(() => {
     dispatch(fetchAllProducts());
   }, [dispatch]);
   // console.log(products);
-=======
   // function to add a product to cart
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
   };
->>>>>>> aa3ffeb6786beff59079e71745fffdbd55dede74
 
   // Dispatch the async thunk when the component mounts
   useEffect(() => {
