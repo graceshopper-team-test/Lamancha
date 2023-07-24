@@ -1,33 +1,38 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { updateCartItem ,fetchAllOrderProducts} from "../store/cartSlice";
+import { updateCartItem, fetchAllOrderProducts } from "../store/cartSlice";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const orderProducts = useSelector((state)=>state.orderProducts.allOrderProducts);
-    console.log(orderProducts);
+  const orderProducts = useSelector(
+    (state) => state.orderProducts.allOrderProducts
+  );
+
   useEffect(() => {
-    dispatch(fetchAllOrderProducts()); //want to get order where userId is current users's id
+    dispatch(fetchAllOrderProducts()); //want to get order where userId is current user's id
   }, []);
 
-  const handleIncrement = async () => {
+  const handleIncrement = async (productId) => {
+    const order = orderProducts.find((order) => order.product.id === productId);
     dispatch(
-        updateCartItem({
-        id: product.id,
-        updateProduct: { quantity: product.quantity + 1 },
+      updateCartItem({
+        id: productId,
+        updateProduct: { quantity: order.quantity + 1 },
       })
     );
   };
 
-  const handleDecrement = async () => {
+  const handleDecrement = async (productId) => {
+    const order = orderProducts.find((order) => order.product.id === productId);
     dispatch(
-        updateCartItem({
-        id: product.id,
-        updateProduct: { quantity: product.quantity - 1 },
+      updateCartItem({
+        id: productId,
+        updateProduct: { quantity: order.quantity - 1 },
       })
     );
   };
+
   return (
     <section id="all-Products">
       <h1>Cart Component</h1>
@@ -38,12 +43,21 @@ const Cart = () => {
             <img src={`${order.product.imageUrl}`} />
             <p>{`${order.product.details}`}</p>
             <h4>Unit Price: {`${order.product.price}`}</h4>
-            <h4>Total Price: {`${Number(order.product.price) * Number(order.quantity)}`}</h4>
+            <h4>
+              Total Price:{" "}
+              {`${Number(order.product.price) * Number(order.quantity)}`}
+            </h4>
             {console.log(Number(order.quantity))}
             <p>
               &nbsp; Quantity: {order.quantity}&nbsp;
-              <button onClick={handleIncrement}>+</button>&nbsp;
-              <button onClick={handleDecrement}>-</button>&nbsp;
+              <button onClick={() => handleIncrement(order.product.id)}>
+                +
+              </button>
+              &nbsp;
+              <button onClick={() => handleDecrement(order.product.id)}>
+                -
+              </button>
+              &nbsp;
             </p>
             <button>Place Order</button>
           </div>
