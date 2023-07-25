@@ -6,6 +6,8 @@ import "./Navbar.css";
 
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+  const isAdmin = useSelector((state) => !!state.auth.me.isAdmin)
+  console.log("isAdmin", isAdmin)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logoutAndRedirectHome = () => {
@@ -31,16 +33,17 @@ const Navbar = () => {
             <button type="button" onClick={logoutAndRedirectHome}>
               Logout
             </button>
-            <Link className="navName" to="/products">
-              Shop
-            </Link>
-            {itemsQuantity <= 0 ? (
-              <Link className="navName" to="/cart">
-                Cart
-              </Link>
-            ) : (
-              <Link to="/cart">Cart({itemsQuantity})</Link>
-            )}
+            <Link to="/products">Shop</Link>
+            <Link to="/cart">Cart</Link>
+            <div>
+              {isAdmin ? (
+                <div>
+                <Link to="/admin">Admin</Link>
+                <Link to="/users">Users</Link>
+              </div>
+              ) 
+              : (<div></div>)}
+            </div>
           </div>
         ) : (
           <div className="login">
