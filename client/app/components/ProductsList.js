@@ -2,12 +2,17 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllProducts } from "../store/productSlice";
 import { Link } from "react-router-dom";
+import "./ProductList.css";
 import { addToCart } from "../store/cartSlice";
 
 const ProductsList = () => {
   const products = useSelector((state) => state.products.allProducts);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(fetchAllProducts());
+  }, [dispatch]);
+  // console.log(products);
   // function to add a product to cart
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
@@ -19,29 +24,35 @@ const ProductsList = () => {
   }, []);
   // const cartItemAmount=cartItems[id]
   return (
-    <div>
+    <div className="productList">
       <h2>Products List</h2>
       {products.length === 0 ? (
-        <p>Loading...</p>
+        <p className="infoMessage">Loading...</p>
       ) : products.error ? (
-        <p>Error: {products.error}</p>
+        <p className="infoMessage">Error: {products.error}</p>
       ) : (
-        <ul>
+        <div className="productUL">
           {products.map((product) => {
             return (
-              <li key={product.id}>
-                <Link to={`/products/${product.id}`}>
+              <div className="li" key={product.id}>
+                <Link className="productName" to={`/products/${product.id}`}>
                   <h3>{product.name}</h3>
+                  <img className="image" src={product.imageUrl} />
                 </Link>
-                <p>Price: ${product.price}</p>
-                <p>{product.imageUrl}</p>
-                <button onClick={() => handleAddToCart(product)}>
+
+                <p className="productInfo">Price: ${product.price}</p>
+                <p className="productInfo">Description: {product.details}</p>
+                <p className="productInfo">Stock: {product.stock}</p>
+                <button
+                  className="button"
+                  onClick={() => handleAddToCart(product)}
+                >
                   Add To Cart
                 </button>
-              </li>
+              </div>
             );
           })}
-        </ul>
+        </div>
       )}
     </div>
   );

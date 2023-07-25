@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import {  useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchAllProducts } from "../store/productSlice";
-import { Navbar, AppRoutes} from "./";
+import { Navbar, AppRoutes } from "./";
+import "./App.css";
 
 const App = () => {
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -12,7 +12,7 @@ const App = () => {
     dispatch(fetchAllProducts());
   }, []);
   return (
-    <div>
+    <div className="app">
       <Navbar />
       <AppRoutes />
     </div>

@@ -1,0 +1,73 @@
+.productUL {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-gap: 1rem;
+}
+
+h2 {
+  color: rgb(74, 74, 74);
+}
+
+.li {
+  list-style-type: none;
+  align-items: center;
+  text-align: center;
+  background-color: rgb(193, 193, 193);
+}
+
+.productName {
+  text-decoration: none;
+}
+/* unvisited link */
+.productName:link {
+  color: rgb(57, 57, 57);
+}
+
+/* visited link */
+.productName:visited {
+  color: rgb(57, 57, 57);
+}
+
+/* mouse over link */
+.productName:hover {
+  color: rgb(57, 57, 57);
+}
+
+/* selected link */
+.productName:active {
+  color: rgb(57, 57, 57);
+}
+
+.productInfo {
+}
+
+.button {
+  background-color: #40b548; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.infoMessage {
+  font-size: 72px;
+  color: rgb(89, 89, 89);
+  align-content: center;
+  padding-left: 20px;
+}
+
+.header {
+  font-size: large;
+  color: rgb(61, 61, 61);
+  align-content: left;
+  padding-left: 35px;
+}
+
+.image {
+  max-height: 200px;
+}
