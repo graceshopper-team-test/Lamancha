@@ -1,69 +1,55 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { updateCartItem, fetchAllOrderProducts } from "../store/cartSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart, decrement ,checkout} from "../store/cartSlice";
 
 const Cart = () => {
+  const cartItems = useSelector((state) => state.cart);
+  // console.log(cartItems);
   const dispatch = useDispatch();
-  const orderProducts = useSelector(
-    (state) => state.orderProducts.allOrderProducts
-  );
 
-  useEffect(() => {
-    dispatch(fetchAllOrderProducts()); //want to get order where userId is current user's id
-  }, []);
-
-  const handleIncrement = async (productId) => {
-    const order = orderProducts.find((order) => order.product.id === productId);
-    dispatch(
-      updateCartItem({
-        id: productId,
-        updateProduct: { quantity: order.quantity + 1 },
-      })
-    );
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
   };
 
-  const handleDecrement = async (productId) => {
-    const order = orderProducts.find((order) => order.product.id === productId);
-    dispatch(
-      updateCartItem({
-        id: productId,
-        updateProduct: { quantity: order.quantity - 1 },
-      })
-    );
+  const handleDecrement = (product) => {
+    dispatch(decrement(product));
+  };
+
+  const handlCheckout = () => {
+    dispatch(checkout());
   };
 
   return (
-    <section id="all-Products">
-      <h1>Cart Component</h1>
-      <div id="userCart">
-        {orderProducts.map((order) => (
-          <div className="cartItem" key={order.product.id}>
-            <h3>{`${order.product.name}`}</h3>
-            <img src={`${order.product.imageUrl}`} />
-            <p>{`${order.product.details}`}</p>
-            <h4>Unit Price: {`${order.product.price}`}</h4>
-            <h4>
-              Total Price:{" "}
-              {`${Number(order.product.price) * Number(order.quantity)}`}
-            </h4>
-            {console.log(Number(order.quantity))}
-            <p>
-              &nbsp; Quantity: {order.quantity}&nbsp;
-              <button onClick={() => handleIncrement(order.product.id)}>
-                +
-              </button>
-              &nbsp;
-              <button onClick={() => handleDecrement(order.product.id)}>
-                -
-              </button>
-              &nbsp;
-            </p>
-            <button>Place Order</button>
-          </div>
-        ))}
-      </div>
-    </section>
+    <div>
+      <h1>Cart</h1>
+      {cartItems.length === 0 ? (
+        <p>Your shopping cart is empty</p>
+      ) : (
+        <>
+          <ul>
+            {cartItems.map((item) => (
+              <li key={item.id}>
+                <h3>{item.name}</h3>
+                <p>Price: ${item.price}</p>
+                <p>{item.imageUrl}</p>
+                <p>
+                  Quantity: {item.quantity} &nbsp;
+                  <button onClick={() => handleAddToCart(item)}>+</button>&nbsp;
+                  <button onClick={() => handleDecrement(item)}>-</button>
+                </p>
+              </li>
+            ))}
+          </ul>
+          <p>
+            Total Price: $
+            {cartItems
+              .reduce((total, item) => total + item.price * item.quantity, 0)
+              .toFixed(2)}
+          </p>
+          <button onClick={handlCheckout}>Check Out</button>
+        </>
+      )}
+    </div>
   );
 };
 

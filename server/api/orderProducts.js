@@ -31,7 +31,7 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-
+// the post right now only works on orderId existed. do not work on new orderId
 router.post("/", async (req, res, next) => {
   try {
     const orderProduct = await OrderProducts.create(req.body);
