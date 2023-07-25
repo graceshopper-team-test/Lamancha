@@ -12,7 +12,7 @@ const Admin = () => {
 
   useEffect(() => {
     dispatch(fetchAllProducts());
-  }, [dispatch]);
+  }, []);
 
   return (
     <div>

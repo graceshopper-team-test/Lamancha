@@ -37,34 +37,34 @@ const Cart = () => {
       ) : (
         <div className="cart">
           <ul className="cartList">
-            {cartItems.map((item) => (
-              <li className="cartCard" key={item.id}>
-                <div className="cartItem">
-                  <h3 className="itemName">{item.name}</h3>
-                  <img className="imageCart" src={item.imageUrl} />
-                </div>
+            {cartItems
+              .filter((item) => item.quantity > 0)
+              .map((item) => (
+                <li className="cartCard" key={item.id}>
+                  <div className="cartItem">
+                    <h3 className="itemName">{item.name}</h3>
+                    <img className="imageCart" src={item.imageUrl} />
+                  </div>
 
-                <div className="cartDesc">
-                  <p className="price">Price: ${item.price}</p>
-                  <p className="quantity">
-                    Quantity: {item.quantity} &nbsp;
-                    <button
-                      className="buttonCart2"
-                      onClick={() => handleAddToCart(item)}
-                    >
-                      +
-                    </button>
-                    &nbsp;
-                    <button
-                      className="buttonCart2"
-                      onClick={() => handleDecrement(item)}
-                    >
-                      -
-                    </button>
-                  </p>
-                </div>
-              </li>
-            ))}
+                  <div className="cartDesc">
+                    <p className="price">Price: ${item.price}</p>
+                    <p className="quantity">
+                      Quantity: {item.quantity} &nbsp;
+                      <button
+                        className="buttonCart2"
+                        onClick={() => handleAddToCart(item)}>
+                        +
+                      </button>
+                      &nbsp;
+                      <button
+                        className="buttonCart2"
+                        onClick={() => handleDecrement(item)}>
+                        -
+                      </button>
+                    </p>
+                  </div>
+                </li>
+              ))}
           </ul>
           <div className="purchase">
             <div className="totalPrice">
