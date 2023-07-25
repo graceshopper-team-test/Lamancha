@@ -10,6 +10,7 @@ const store = configureStore({
     auth: authReducer,
     products: productSlice,
     orders: orderSlice,
+    cart : cartSlice,
     orderProducts: cartSlice,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
