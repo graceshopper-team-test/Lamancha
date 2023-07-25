@@ -1,8 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addToCart, decrement ,checkoutCart} from "../store/cartSlice";
+import { addToCart, decrement, checkout } from "../store/cartSlice";
 
 const Cart = () => {
+  const [orderCompleted, setOrderCompleted] = useState(false);
+
   const cartItems = useSelector((state) => state.cart);
   // console.log(cartItems);
   const dispatch = useDispatch();
@@ -16,13 +18,18 @@ const Cart = () => {
   };
 
   const handleCheckout = () => {
-    dispatch(checkoutCart(cartItems));
+    setTimeout(() => {
+      setOrderCompleted(true);
+      dispatch(checkout());
+    },2000);
   };
 
   return (
     <div>
       <h1>Cart</h1>
-      {cartItems.length === 0 ? (
+      {orderCompleted ? (
+        <h2>Your order is completed, thanks for shopping!</h2>
+      ) : cartItems.length === 0 ? (
         <p>Your shopping cart is empty</p>
       ) : (
         <>
