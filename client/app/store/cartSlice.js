@@ -73,6 +73,18 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = JSON.parse(localStorage.getItem("cart")) || [];
 
+export const checkoutCart = createAsyncThunk(
+  "cart/updateCart",
+  async ({ cartItems }) => {
+    try {
+      const { data } = await axios.put(`/api/orderproducts`, cartItems);
+      return data;
+    } catch (err) {
+      return err.message;
+    }
+  }
+);
+
 const cartSlice = createSlice({
   name: "cart",
   initialState,
@@ -99,20 +111,19 @@ const cartSlice = createSlice({
       }
     },
     // reset the cart to empty after checkout
-    checkout: (state, action) => {
-      state.splice(0, state.length);
-      localStorage.setItem("cart", JSON.stringify(state));
-    },
+    // checkout: (state, action) => {
+    //   state.splice(0, state.length);
+    //   localStorage.setItem("cart", JSON.stringify(state));
+    // },
   },
-  // extraReducers: (builder) => {
-  //   builder
-  //     .addCase(checkout.fulfilled, (state, { payload }) => {
-  //       state.allOrderProducts = payload;
-  //       // console.log(payload);
-  //     })
-  // }
+  extraReducers: (builder) => {
+    builder
+      .addCase(checkoutCart.fulfilled, (state, { payload }) => {
+        state = payload;
+      })
+  }
 });
 
-export const { addToCart, decrement, checkout } = cartSlice.actions;
+export const { addToCart, decrement} = cartSlice.actions;
 
 export default cartSlice.reducer;

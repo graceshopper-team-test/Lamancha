@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addToCart, decrement ,checkout} from "../store/cartSlice";
+import { addToCart, decrement ,checkoutCart} from "../store/cartSlice";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart);
@@ -15,8 +15,8 @@ const Cart = () => {
     dispatch(decrement(product));
   };
 
-  const handlCheckout = () => {
-    dispatch(checkout());
+  const handleCheckout = () => {
+    dispatch(checkoutCart(cartItems));
   };
 
   return (
@@ -46,7 +46,7 @@ const Cart = () => {
               .reduce((total, item) => total + item.price * item.quantity, 0)
               .toFixed(2)}
           </p>
-          <button onClick={handlCheckout}>Check Out</button>
+          <button onClick={handleCheckout}>Check Out</button>
         </>
       )}
     </div>
