@@ -20,7 +20,7 @@ const AppRoutes = () => {
   }, []);
 
   return (
-    <div>
+    <div className="login">
       {isLoggedIn ? (
         <Routes>
           <Route path="/*" element={<Home />} />

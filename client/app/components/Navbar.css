@@ -1,0 +1,32 @@
+.title {
+  color: rgb(56, 56, 56);
+  text-align: center;
+}
+
+.nav {
+  text-align: center;
+}
+
+.navName {
+  text-decoration: none;
+  font-weight: bold;
+}
+/* unvisited link */
+.navName:link {
+  color: rgb(57, 57, 57);
+}
+
+/* visited link */
+.navName:visited {
+  color: rgb(57, 57, 57);
+}
+
+/* mouse over link */
+.navName:hover {
+  color: rgb(57, 57, 57);
+}
+
+/* selected link */
+.navName:active {
+  color: rgb(57, 57, 57);
+}

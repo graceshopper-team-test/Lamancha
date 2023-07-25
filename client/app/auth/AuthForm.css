@@ -1,0 +1,22 @@
+.loginn {
+  color: rgb(77, 77, 77);
+  display: flex;
+  justify-content: center;
+}
+
+.buttonAuth {
+  background-color: #7e7e7e; /* Green */
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.buttonAuth:active {
+  background-color: rgb(75, 75, 75);
+}
