@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchSingleProduct } from "../store/productSlice";
 import { addToCart } from "../store/cartSlice";
+import "./Product.css";
 
 const Product = () => {
   const product = useSelector((state) => state.products.singleProduct);
@@ -19,15 +20,25 @@ const Product = () => {
   }, [id]);
 
   return (
-    <div>
+    <div className="singleProduct">
       {product ? (
-        <div>
-          <h3>{product.name}</h3>
-          <p>Price: ${product.price}</p>
-          <p>{product.imageUrl}</p>
-          <p>Description: {product.details}</p>
-          <p>Stock: {product.stock}</p>
-          <button onClick={() => handleAddToCart(product)}>Add To Cart</button>
+        <div className="cardStyle">
+          <div className="product">
+            <div>
+              <img className="image" src={product.imageUrl} />
+            </div>
+            <div className="productDetails">
+              <h3>{product.name}</h3>
+              <p>Description: {product.details}</p>
+              <p>Price: ${product.price}</p>
+              <button
+                className="buttonAdd"
+                onClick={() => handleAddToCart(product)}
+              >
+                Add To Cart
+              </button>
+            </div>
+          </div>
         </div>
       ) : (
         <p>Loading product data...</p>

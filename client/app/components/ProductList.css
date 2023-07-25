@@ -6,6 +6,8 @@
 
 h2 {
   color: rgb(74, 74, 74);
+  display: flex;
+  justify-content: center;
 }
 
 .li {
@@ -41,7 +43,7 @@ h2 {
 .productInfo {
 }
 
-.button {
+.buttonList {
   background-color: #40b548; /* Green */
   border: none;
   color: white;
@@ -52,6 +54,10 @@ h2 {
   font-size: 16px;
   font-weight: 500;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.buttonList:active {
+  background-color: #329138;
 }
 
 .infoMessage {

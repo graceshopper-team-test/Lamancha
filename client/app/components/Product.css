@@ -1,0 +1,55 @@
+.buttonAdd {
+  background-color: #40b548; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  width: 10rem;
+}
+
+.buttonAdd:active {
+  background-color: #329138;
+}
+
+.singleProduct {
+  display: flex;
+  justify-content: center;
+}
+
+h3 {
+  color: rgb(74, 74, 74);
+  display: flex;
+  justify-content: center;
+}
+
+.product {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.productDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
+.cardStyle {
+  padding: 2rem;
+  list-style-type: none;
+  align-items: center;
+  text-align: center;
+  background-color: rgb(193, 193, 193);
+}
+
+.image {
+  max-height: 200px;
+  padding-top: 2rem;
+}
