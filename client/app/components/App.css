@@ -1,0 +1,6 @@
+/* npm install style-loader css-loader --save-dev */
+
+.app {
+  padding-left: 20px;
+  padding-right: 20px;
+}
