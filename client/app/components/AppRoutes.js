@@ -5,6 +5,7 @@ import AuthForm from "../auth/AuthForm";
 import Home from "./Home";
 import { me } from "../store/store";
 import { Cart, Product, ProductsList } from "./";
+
 // import {ProductsList} from './index'
 
 /**
@@ -20,7 +21,7 @@ const AppRoutes = () => {
   }, []);
 
   return (
-    <div>
+    <div className="login">
       {isLoggedIn ? (
         <Routes>
           <Route path="/*" element={<Home />} />

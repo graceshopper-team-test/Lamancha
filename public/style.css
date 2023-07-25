@@ -1,5 +1,7 @@
 body {
   font-family: sans-serif;
+  background-image: radial-gradient(200% 180%, white, rgb(187, 187, 187));
+  background-attachment: fixed;
 }
 
 a {

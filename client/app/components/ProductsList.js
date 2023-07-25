@@ -41,10 +41,8 @@ const ProductsList = () => {
                 </Link>
 
                 <p className="productInfo">Price: ${product.price}</p>
-                <p className="productInfo">Description: {product.details}</p>
-                <p className="productInfo">Stock: {product.stock}</p>
                 <button
-                  className="button"
+                  className="buttonList"
                   onClick={() => handleAddToCart(product)}
                 >
                   Add To Cart
