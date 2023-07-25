@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import AuthForm from "../auth/AuthForm";
 import Home from "./Home";
 import { me } from "../store/store";
-import { Cart, Product, ProductsList } from "./";
+import { Cart, Product, ProductsList, Admin } from "./";
 // import {ProductsList} from './index'
 
 /**
@@ -28,6 +28,7 @@ const AppRoutes = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/products" element={<ProductsList />} />
           <Route path="/products/:id" element={<Product />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
       ) : (
         <Routes>

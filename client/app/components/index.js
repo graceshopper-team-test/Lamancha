@@ -5,3 +5,5 @@ export { default as ProductsList } from "./ProductsList.js";
 export { default as Product } from "./Product.js";
 export { default as AppRoutes } from "./AppRoutes.js";
 export { default as Cart } from "./Cart.js";
+export { default as Admin } from "./Admin.js"
+export { default as AddProductForm } from "./AddProductForm.js"
