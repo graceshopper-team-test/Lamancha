@@ -12,6 +12,11 @@ const Navbar = () => {
     dispatch(logout());
     navigate("/login");
   };
+  const cartItems = useSelector((state) => state.cart);
+  const itemsQuantity = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
 
   return (
     <div>
@@ -29,9 +34,13 @@ const Navbar = () => {
             <Link className="navName" to="/products">
               Shop
             </Link>
-            <Link className="navName" to="/cart">
-              Cart
-            </Link>
+            {itemsQuantity <= 0 ? (
+              <Link className="navName" to="/cart">
+                Cart
+              </Link>
+            ) : (
+              <Link to="/cart">Cart({itemsQuantity})</Link>
+            )}
           </div>
         ) : (
           <div className="login">
@@ -45,9 +54,13 @@ const Navbar = () => {
             <Link className="navName" to="/products">
               Shop
             </Link>
-            <Link className="navName" to="/cart">
-              Cart
-            </Link>
+            {itemsQuantity <= 0 ? (
+              <Link className="navName" to="/cart">
+                Cart
+              </Link>
+            ) : (
+              <Link to="/cart">Cart({itemsQuantity})</Link>
+            )}
           </div>
         )}
       </nav>
