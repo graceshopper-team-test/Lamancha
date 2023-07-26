@@ -1,0 +1,30 @@
+.addProductDiv {
+  color: rgb(77, 77, 77);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.addProductForm {
+  display: flex;
+  flex-direction: column;
+  padding-left: 45%;
+}
+
+.buttonAddProduct {
+  background-color: #7e7e7e; /* Green */
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  margin-left: 2em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.buttonAddProduct:active {
+  background-color: rgb(75, 75, 75);
+}

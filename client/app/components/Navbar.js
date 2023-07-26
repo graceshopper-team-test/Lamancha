@@ -6,8 +6,8 @@ import "./Navbar.css";
 
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
-  const isAdmin = useSelector((state) => !!state.auth.me.isAdmin)
-  console.log("isAdmin", isAdmin)
+  const isAdmin = useSelector((state) => !!state.auth.me.isAdmin);
+  console.log("isAdmin", isAdmin);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logoutAndRedirectHome = () => {
@@ -30,19 +30,32 @@ const Navbar = () => {
             <Link className="navName" to="/home">
               Home
             </Link>
-            <button type="button" onClick={logoutAndRedirectHome}>
-              Logout
-            </button>
-            <Link to="/products">Shop</Link>
-            <Link to="/cart">Cart</Link>
+            <Link className="navName" to="/products">
+              Shop
+            </Link>
+            <Link className="navName" to="/cart">
+              Cart
+            </Link>
             <div>
               {isAdmin ? (
                 <div>
-                <Link to="/admin">Admin</Link>
-                <Link to="/users">Users</Link>
-              </div>
-              ) 
-              : (<div></div>)}
+                  <Link className="navName" to="/admin">
+                    Admin
+                  </Link>
+                  <Link className="navName" to="/users">
+                    Users
+                  </Link>
+                  <button
+                    className="buttonAdminLogout"
+                    type="button"
+                    onClick={logoutAndRedirectHome}
+                  >
+                    Logout
+                  </button>
+                </div>
+              ) : (
+                <div></div>
+              )}
             </div>
           </div>
         ) : (
@@ -62,7 +75,9 @@ const Navbar = () => {
                 Cart
               </Link>
             ) : (
-              <Link to="/cart">Cart({itemsQuantity})</Link>
+              <Link className="navName" to="/cart">
+                Cart({itemsQuantity})
+              </Link>
             )}
           </div>
         )}

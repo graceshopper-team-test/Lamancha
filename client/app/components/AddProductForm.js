@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addSingleProduct } from "../store/productSlice";
+import "./AddProductForm.css";
 
 const AddProductForm = () => {
   const [name, setName] = useState("");
@@ -11,11 +12,11 @@ const AddProductForm = () => {
   const dispatch = useDispatch();
 
   const handleProductNameChange = (e) => {
-    setName(e.target.value);
+    setProductName(e.target.value);
   };
 
   const handleProductImgChange = (e) => {
-    setImageUrl(e.target.value);
+    setProductImg(e.target.value);
   };
 
   const handlePriceChange = (e) => {
@@ -23,7 +24,7 @@ const AddProductForm = () => {
   };
 
   const handleDescriptionChange = (e) => {
-    setDetails(e.target.value);
+    setDescription(e.target.value);
   };
 
   const handleStockChange = (e) => {
@@ -32,9 +33,7 @@ const AddProductForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    const newProduct = { name, imageUrl, price, details, stock };
-    console.log(newProduct);
+    const newProduct = { productName, productImg, price, details, stock };
     dispatch(addSingleProduct(newProduct));
 
     // Clear the form fields after submission
@@ -46,7 +45,7 @@ const AddProductForm = () => {
   };
 
   return (
-    <div>
+    <div className="addProductDiv">
       <h2>Add New Product</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -89,7 +88,9 @@ const AddProductForm = () => {
             onChange={handleStockChange}
             required
           />
-          <button type="submit">Add Product</button>
+          <button className="buttonAddProduct" type="submit">
+            Add Product
+          </button>
         </div>
       </form>
     </div>
