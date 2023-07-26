@@ -2,6 +2,21 @@
   max-height: 100px;
 }
 
+@media (max-width: 600px) {
+  .cartItem {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  .cartCard {
+    background-color: rgb(193, 193, 193);
+    padding-bottom: 10px;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 .h2Cart {
   color: rgb(74, 74, 74);
 }
@@ -24,8 +39,6 @@
   flex-direction: column;
   justify-content: center;
   row-gap: 1rem;
-  padding-left: 10rem;
-  padding-right: 10rem;
 }
 
 .cartCard {

@@ -27,15 +27,28 @@ const Navbar = () => {
         {isLoggedIn ? (
           <div>
             {/* The navbar will show these links after you log in */}
+            <button
+              className="buttonAdminLogout"
+              type="button"
+              onClick={logoutAndRedirectHome}
+            >
+              Logout
+            </button>
             <Link className="navName" to="/home">
               Home
             </Link>
             <Link className="navName" to="/products">
               Shop
             </Link>
-            <Link className="navName" to="/cart">
-              Cart
-            </Link>
+            {itemsQuantity <= 0 ? (
+              <Link className="navName" to="/cart">
+                Cart
+              </Link>
+            ) : (
+              <Link className="navName" to="/cart">
+                Cart({itemsQuantity})
+              </Link>
+            )}
             <div>
               {isAdmin ? (
                 <div>
@@ -45,13 +58,6 @@ const Navbar = () => {
                   <Link className="navName" to="/users">
                     Users
                   </Link>
-                  <button
-                    className="buttonAdminLogout"
-                    type="button"
-                    onClick={logoutAndRedirectHome}
-                  >
-                    Logout
-                  </button>
                 </div>
               ) : (
                 <div></div>
