@@ -4,10 +4,10 @@ import { addSingleProduct } from "../store/productSlice";
 import "./AddProductForm.css";
 
 const AddProductForm = () => {
-  const [productName, setProductName] = useState("");
-  const [productImg, setProductImg] = useState("");
+  const [name, setName] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const [price, setPrice] = useState("");
-  const [description, setDescription] = useState("");
+  const [details, setDetails] = useState("");
   const [stock, setStock] = useState("");
   const dispatch = useDispatch();
 
@@ -33,68 +33,66 @@ const AddProductForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newProduct = { productName, productImg, price, description, stock };
+    const newProduct = { productName, productImg, price, details, stock };
     dispatch(addSingleProduct(newProduct));
 
     // Clear the form fields after submission
-    setProductName("");
-    setProductImg("");
+    setName("");
+    setImageUrl("");
     setPrice("");
-    setDescription("");
+    setDetails("");
     setStock("");
   };
 
   return (
     <div className="addProductDiv">
       <h2>Add New Product</h2>
-      <div className="addProductForm">
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="productName">Product Name:</label>
-            <input
-              type="text"
-              id="productName"
-              value={productName}
-              onChange={handleProductNameChange}
-              required
-            />
-            <label htmlFor="productImg">Product Image:</label>
-            <input
-              type="text"
-              id="productImg"
-              value={productImg}
-              onChange={handleProductImgChange}
-              required
-            />
-            <label htmlFor="price">Price:</label>
-            <input
-              type="number"
-              id="price"
-              value={price}
-              onChange={handlePriceChange}
-              required
-            />
-            <label htmlFor="description">Description:</label>
-            <textarea
-              id="description"
-              value={description}
-              onChange={handleDescriptionChange}
-              required
-            />
-            <label htmlFor="stock">Stock:</label>
-            <input
-              type="number"
-              id="stock"
-              value={stock}
-              onChange={handleStockChange}
-              required
-            />
-            <button className="buttonAddProduct" type="submit">
-              Add Product
-            </button>
-          </div>
-        </form>
-      </div>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="productName">Product Name:</label>
+          <input
+            type="text"
+            id="productName"
+            value={name}
+            onChange={handleProductNameChange}
+            required
+          />
+          <label htmlFor="productImg">Product Image:</label>
+          <input
+            type="text"
+            id="productImg"
+            value={imageUrl}
+            onChange={handleProductImgChange}
+            required
+          />
+          <label htmlFor="price">Price:</label>
+          <input
+            type="number"
+            id="price"
+            value={price}
+            onChange={handlePriceChange}
+            required
+          />
+          <label htmlFor="description">Description:</label>
+          <textarea
+            id="description"
+            value={details}
+            onChange={handleDescriptionChange}
+            required
+          />
+          <label htmlFor="stock">Stock:</label>
+          <input
+            type="number"
+            id="stock"
+            value={stock}
+            onChange={handleStockChange}
+            required
+          />
+          <button className="buttonAddProduct" type="submit">
+            Add Product
+          </button>
+        </div>
+      </form>
     </div>
   );
 };

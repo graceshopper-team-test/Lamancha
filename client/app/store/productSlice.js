@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// fetch all products
+// fetch all tasks
 export const fetchAllProducts = createAsyncThunk(
   "allProducts/fetchAllProducts",
   async () => {
@@ -36,6 +36,7 @@ export const addSingleProduct = createAsyncThunk(
     try {
       // console.log(newProduct);
       const { data } = await axios.post(`/api/products/`, newProduct);
+      console.log(data);
       return data;
     } catch (err) {
       return err.message;
@@ -49,7 +50,6 @@ export const deleteSingleProduct = createAsyncThunk(
   async (productId) => {
     try {
       const { data } = await axios.delete(`/api/products/${productId}`);
-      console.log("productId => ", productId)
       return data;
     } catch (err) {
       return err.message;
@@ -81,7 +81,6 @@ export const productSlice = createSlice({
       .addCase(fetchAllProducts.fulfilled, (state, { payload }) => {
         // use the payload backend send back to set allproducts to the state
         state.allProducts = payload;
-        // console.log(state.allProducts);
       })
       .addCase(fetchSingleProduct.fulfilled, (state, { payload }) => {
         // use payload to set singleProduct to the state

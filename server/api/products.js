@@ -38,7 +38,7 @@ router.post("/", async (req, res, next) => {
 });
 
 // delete product with id
-router.delete("/admin/:id", async (req, res, next) => {
+router.delete("/:id", async (req, res, next) => {
   try {
     const deleteProduct = await Products.findByPk(req.params.id);
     await Products.destroy({
