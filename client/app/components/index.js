@@ -7,3 +7,4 @@ export { default as AppRoutes } from "./AppRoutes.js";
 export { default as Cart } from "./Cart.js";
 export { default as Admin } from "./Admin.js"
 export { default as AddProductForm } from "./AddProductForm.js"
+export { default as AllUsers } from "./AllUsers.js"
