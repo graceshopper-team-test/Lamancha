@@ -7,7 +7,6 @@ import "./Navbar.css";
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const isAdmin = useSelector((state) => !!state.auth.me.isAdmin);
-  console.log("isAdmin", isAdmin);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logoutAndRedirectHome = () => {
@@ -22,7 +21,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <h1 className="title">FS-App-Template</h1>
+      
       <nav className="nav">
         {isLoggedIn ? (
           <div>
