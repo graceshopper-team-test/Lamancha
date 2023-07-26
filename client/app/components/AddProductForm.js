@@ -12,11 +12,11 @@ const AddProductForm = () => {
   const dispatch = useDispatch();
 
   const handleProductNameChange = (e) => {
-    setProductName(e.target.value);
+    setName(e.target.value);
   };
 
   const handleProductImgChange = (e) => {
-    setProductImg(e.target.value);
+    setImageUrl(e.target.value);
   };
 
   const handlePriceChange = (e) => {
@@ -24,7 +24,7 @@ const AddProductForm = () => {
   };
 
   const handleDescriptionChange = (e) => {
-    setDescription(e.target.value);
+    setDetails(e.target.value);
   };
 
   const handleStockChange = (e) => {
@@ -33,7 +33,7 @@ const AddProductForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newProduct = { productName, productImg, price, details, stock };
+    const newProduct = { name, price, imageUrl, details, stock };
     dispatch(addSingleProduct(newProduct));
 
     // Clear the form fields after submission
